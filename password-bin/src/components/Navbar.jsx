@@ -21,7 +21,7 @@ const Navbar = () => {
             Tarun Gattu
           </a>
         </li>
-
+        
 
         <li>
           <a
