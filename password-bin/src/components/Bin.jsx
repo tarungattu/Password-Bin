@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import Lottie from "lottie-react"
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { ToastContainer, toast } from 'react-toastify';
-import { v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const Bin = () => {
 
@@ -32,17 +32,27 @@ const Bin = () => {
 
     const savePassword = async () => {
         // console.log(form);
-        setpasswordArray([...passwordArray, {...form, id: uuidv4()}]);
-        localStorage.setItem("passwords", JSON.stringify([...passwordArray, {...form, id: uuidv4()}]));
+        setpasswordArray([...passwordArray, { ...form, id: uuidv4() }]);
+        localStorage.setItem("passwords", JSON.stringify([...passwordArray, { ...form, id: uuidv4() }]));
         console.log([...passwordArray, form]);
+        setForm({ site: "", username: "", password: "", notes: "" })
     }
     
     const deletePassword = async (id) => {
         // console.log(form);
-        setpasswordArray([...passwordArray, {...form, id: uuidv4()}]);
-        localStorage.setItem("passwords", JSON.stringify([...passwordArray, {...form, id: uuidv4()}]));
-        console.log([...passwordArray, form]);
+        setpasswordArray(passwordArray.filter(item=> item.id != id));
+        localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item=> item.id != id)));
     }
+
+    const editPassword = async (id) => {
+        // console.log(form);
+        // console.log("Editing password with id", id);
+        // returns array
+        setForm(passwordArray.filter(item => item.id === id)[0])
+        setpasswordArray(passwordArray.filter(item=> item.id != id))
+        
+    }
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
@@ -204,18 +214,22 @@ const Bin = () => {
                                 </td>
                                 <td className="px-6 py-4 text-right">
                                     <div className='flex mx-auto'>
-                                        <lord-icon
-                                            className="hover:cursor-pointer"
-                                            src="https://cdn.lordicon.com/fikcyfpp.json"
-                                            trigger="hover"
-                                            style={{ width: '30px', height: '30px' }}>
-                                        </lord-icon>
-                                        <lord-icon
-                                            className="hover:cursor-pointer"
-                                            src="https://cdn.lordicon.com/jzinekkv.json"
-                                            trigger="hover"
-                                            style={{ width: '28px', height: '28px' }}>
-                                        </lord-icon>
+                                        <span onClick={()=>{editPassword(item.id)}}>
+                                            <lord-icon
+                                                className="hover:cursor-pointer"
+                                                src="https://cdn.lordicon.com/fikcyfpp.json"
+                                                trigger="hover"
+                                                style={{ width: '30px', height: '30px' }}>
+                                            </lord-icon>
+                                        </span>
+                                        <span onClick={()=>{deletePassword(item.id)}}>
+                                            <lord-icon
+                                                className="hover:cursor-pointer"
+                                                src="https://cdn.lordicon.com/jzinekkv.json"
+                                                trigger="hover"
+                                                style={{ width: '28px', height: '28px' }}>
+                                            </lord-icon>
+                                        </span>
                                     </div>
                                 </td>
                             </tr>
