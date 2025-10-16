@@ -105,25 +105,27 @@ const Bin = () => {
                         <input name='username' value={form.username} onChange={handleChange} type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-blue-300 dark:border-gray-600 dark:placeholder-gray-500 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="User Name" required />
 
                         {/* password input replaced with a relative wrapper so the icon can be absolutely positioned */}
-                        <div className="relative">
-                            <input
-                                ref={passwordRef}
-                                onChange={handleChange}
-                                name='password'
-                                value={form.password}
-                                type="password"
-                                id="password"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 pr-10 dark:bg-blue-300 dark:border-gray-600 dark:placeholder-gray-500 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Password"
-                                required
-                            />
-                            <lord-icon
-                                src="https://cdn.lordicon.com/knitbwfa.json"
-                                trigger="hover"
-                                style={{ width: '28px', height: '28px' }}
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                                onClick={showPassword}
-                            />
+                        <div className="relative w-full md:col-span-1 col-span-1">
+                          <input
+                            ref={passwordRef}
+                            onChange={handleChange}
+                            name='password'
+                            value={form.password}
+                            type="password"
+                            id="password"
+                            className="block w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 pr-10 dark:bg-blue-300 dark:border-gray-600 dark:placeholder-gray-500 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Password"
+                            required
+                          />
+                          <lord-icon
+                              src="https://cdn.lordicon.com/knitbwfa.json"
+                              trigger="hover"
+                              style={{ width: '28px', height: '28px' }}
+                              className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer z-10"
+                              onClick={showPassword}
+                              role="button"
+                              aria-label="Toggle password visibility"
+                          />
                         </div>
 
 
@@ -200,7 +202,7 @@ const Bin = () => {
                                     </div>
                                 </td>
                                 <td className=" flex py-4 text-black justify-center items-center">
-                                    <div className='flex items-center'>
+                                    <div className='flex items-center' type="password">
 
                                         {item.password}
                                         <div className='lordicon_copy px-3' onClick={() => { copyText(item.password) }}>
