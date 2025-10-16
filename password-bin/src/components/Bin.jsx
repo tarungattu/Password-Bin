@@ -40,8 +40,12 @@ const Bin = () => {
     
     const deletePassword = async (id) => {
         // console.log(form);
-        setpasswordArray(passwordArray.filter(item=> item.id != id));
-        localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item=> item.id != id)));
+        let confirmed = confirm("Are you sure about that?")
+        if (confirmed){
+
+            setpasswordArray(passwordArray.filter(item=> item.id != id));
+            localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item=> item.id != id)));
+        }
     }
 
     const editPassword = async (id) => {
