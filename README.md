@@ -35,7 +35,7 @@ I also containerized the application using Docker, learning how to write and dep
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/your-username/your-repository.git](https://github.com/tarungattu/Password-Bin.git)
+    git clone https://github.com/tarungattu/Password-Bin.git
     ```
 
 2.  **Navigate to the `password-bin` directory and install dependencies:**
